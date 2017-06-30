@@ -4,17 +4,17 @@ Bogearra gramadaí Gaeilge é seo a thionlacann an [Bunachar Náisiúnta Moirfeo
 
 This is a computational grammar library for Irish which accompanies the [Irish National Morphology Database](https://github.com/michmech/BuNaMo). It contains functions for loading entries from the database into memory and for performing operations on them, such as composing a noun phrase from a noun and an adjective.
 
-## Breis eolais | Mofe info
+## Breis eolais | More info
 
 I nGaeilge
 
 - [Teanglann: Bunachar Gramadaí: Ábhar le híoslódáil](http://www.teanglann.ie/ga/gram/_ioslodail)
-- [‘Bunachar Náisiúnta Moirfeolaíochta agus Gramadán: Doiciméadúchán Teicniúil’ (PDF)](http://www.teanglann.ie/data/gramadan.pdf)
+- ‘[Bunachar Náisiúnta Moirfeolaíochta agus Gramadán: Doiciméadúchán Teicniúil](http://www.teanglann.ie/data/gramadan.pdf)’ (PDF)
 
 In English
 
 - [Teanglann: Irish Grammar Database: Downloads](http://www.teanglann.ie/en/gram/_download)
-- [‘Introduction to Gramadán and the Irish National Morphology Database’ (PDF)](http://www.teanglann.ie/data/gramadan-en.pdf)
+- ‘[Introduction to Gramadán and the Irish National Morphology Database](http://www.teanglann.ie/data/gramadan-en.pdf)’ (PDF)
 
 ## Foilseachán | Publication
 
