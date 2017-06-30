@@ -1,0 +1,35 @@
+﻿body {font-family: sans-serif; font-size: 80%; margin: 0px; padding: 0px;}
+div.envelope {margin: 20px;}
+
+div.header {}
+div.header h1 {background-color: #dddddd; color: #0069ce; font-weight: bold; font-size: 150%; padding: 5px 10px; margin: -10px -10px 10px -10px;}
+div.header div.property {color: #333333;}
+div.header div.property div.bullet {float: left; width: 0.75em;}
+div.header div.property div.value {margin-left: 0.75em; font-style: italic;}
+
+div.section {margin-top: 10px;}
+div.section h2 {font-size: 150%; font-weight: normal; margin: 0px -5px 0px -5px; padding: 3px 5px 3px 5px; border-bottom: 1px dotted #000000;}
+div.section h2 span.arrow {float: right; font-size: 75%; color: #666666; position: relative; top: 2px;}
+div.section h2.clickable {cursor: pointer;}
+div.section h2.clickable:hover {color: #990033; border-color: #990033; background-color: #ffffcc;}
+div.section h2.clickable:hover * {color: inherit !important;}
+
+div.subsection {margin-top: 10px;}
+div.subsection h3 {color: #4F4F4F; font-size: 100%; margin: 0px 0px 0px 0px;}
+
+div.selector {font-size: 150%; font-weight: normal; margin: 10px -5px 0px -5px; padding: 0px 0px 3px 0px; border-bottom: 1px dotted #000000;}
+div.selector select {color: #4F4F4F; font-size: 125%; width: 100%; border: 1px solid #DDDDDD; padding: 3px 5px;}
+
+div.block {position: relative; margin: 5px 0px 0px 0px;}
+div.block.introd {padding-left: 1.5em;}
+div.block div.intro {position: absolute; top: 0px; left: 0px; width: 1.5em; color: #333333;}
+div.block div.line {position: relative; line-height: 1.25em;}
+div.block div.line.bulletted {padding-left: 0.75em;}
+div.block div.line span.bullet {position: absolute; top: 0px; left: 0px; width: 0.75em; color: #333333;}
+div.block div.line span.value {color: #0069ce; font-size: 120%;}
+div.block div.line span.value.primary {font-weight: bold;}
+div.block div.line span.label {color: #333333; font-style: italic; font-size: 90%;}
+
+div.note { position: relative; margin: 10px 0px 0px 0px; color: #666666; line-height: 1.4em; }
+div.note b { font-weight: bold; background-color: #ffff99; padding: 1px 5px; margin-left: -3px; margin-right: 2px; border-radius: 2px; }
+div.note i { font-style: normal; color: #0069ce; font-weight: bold; }

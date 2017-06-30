@@ -1,0 +1,29 @@
+﻿body {font-family: sans-serif; font-size: 80%; margin: 0px; padding: 0px;}
+div.envelope {margin: 20px;}
+
+div.lemma {margin-top: 30px; position: relative;}
+div.lemma span.uid {position: absolute; top: 9px; right: 5px;}
+
+div.header {}
+div.header h1 {background-color: #dddddd; color: #0069ce; font-weight: bold; font-size: 150%; padding: 5px 10px; margin: -10px -10px 10px -10px;}
+div.header div.property {color: #333333; display: inline; margin-right: 0.25em;}
+div.header div.property div.bullet {display: inline; margin: 0em 0.25em 0em 0em;}
+div.header div.property div.value {display: inline; font-style: italic;}
+
+div.section {padding-top: 5px; clear: both;}
+div.section h2 {font-size: 125%; font-weight: normal; margin: 0px -5px 5px -5px; padding: 3px 5px 3px 5px; border-bottom: 1px dotted #000000;}
+div.section h2 span.arrow {float: right; font-size: 75%; color: #666666; position: relative; top: 2px;}
+
+div.subsection {padding-top: 5px; clear: both;}
+div.subsection h3 {color: #4F4F4F; font-size: 100%; margin: 0px 0.5em 0px 0px; display: inline; float: left; width: 10em;}
+
+div.block {position: relative; margin: 0px 0.25em 0px 0px; display: inline;}
+div.block.introd {display: block; margin-left: 12em; position: relative; padding-left: 2em;}
+div.block div.intro {color: #333333; margin-right: 0.25em; display: inline;}
+div.block.introd div.intro {color: #333333; position: absolute; top: 0px; left: 0px;}
+div.block div.line {position: relative; line-height: 1.25em; display: inline; margin-right: 0.25em;}
+div.block div.line.bulletted {}
+div.block div.line span.bullet {color: #333333; margin: 0em 0.25em 0em 0em;}
+div.block div.line span.value {color: #0069ce; font-size: 120%;}
+div.block div.line span.value.primary {font-weight: bold;}
+div.block div.line span.label {color: #333333; font-style: italic; font-size: 90%;}
