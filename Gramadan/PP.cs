@@ -131,6 +131,13 @@ namespace Gramadan
 				foreach(FormSg f in np.sgDatArtS) this.sgArtS.Add(new FormSg("ar an "+Opers.Mutate((f.gender==Gender.Fem?Mutation.Ecl3:Mutation.Ecl2), f.value), f.gender));
 				foreach(Form f in np.plDatArt) this.plArt.Add(new Form("ar na "+Opers.Mutate(Mutation.PrefH, f.value)));
 			}
+			if(this.prepNick=="thar_prep") {
+				foreach(FormSg f in np.sgDat) this.sg.Add(new FormSg("thar "+Opers.Mutate(Mutation.Len1, f.value), f.gender));
+				foreach(Form f in np.plDat) this.pl.Add(new Form("thar "+Opers.Mutate(Mutation.Len1, f.value)));
+				foreach(FormSg f in np.sgDatArtN) this.sgArtN.Add(new FormSg("thar an "+Opers.Mutate(Mutation.Len3, f.value), f.gender));
+				foreach(FormSg f in np.sgDatArtS) this.sgArtS.Add(new FormSg("thar an "+Opers.Mutate((f.gender==Gender.Fem?Mutation.Ecl3:Mutation.Ecl2), f.value), f.gender));
+				foreach(Form f in np.plDatArt) this.plArt.Add(new Form("thar na "+Opers.Mutate(Mutation.PrefH, f.value)));
+			}
 			if(this.prepNick=="as_prep") {
 				foreach(FormSg f in np.sgDat) this.sg.Add(new FormSg("as "+f.value, f.gender));
 				foreach(Form f in np.plDat) this.pl.Add(new Form("as "+f.value));
