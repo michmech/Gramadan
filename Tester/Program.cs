@@ -11,6 +11,7 @@ namespace Tester
 	{
 		static void Main(string[] args)
 		{
+			Go();
 			Console.Write("Déanta."); Console.ReadLine();
 		}
 
@@ -69,7 +70,7 @@ namespace Tester
 			//NB: the nicknames returned by these have been lower-cased
 			
 			PrinterNeid printer=new PrinterNeid();
-			foreach(string file in Directory.GetFiles(@"C:\MBM\Gramadan\BuNaMo\noun")) {
+			foreach(string file in Directory.GetFiles(@"C:\MBM\BuNaMo\noun")) {
 				XmlDocument doc=new XmlDocument(); doc.Load(file);
 				Noun noun=new Noun(doc);
 				if(!doFilter || filterNicknames.Contains(noun.getNickname().ToLower())) {
@@ -78,7 +79,7 @@ namespace Tester
 					writer.Close();
 				}
 			}
-			foreach(string file in Directory.GetFiles(@"C:\MBM\Gramadan\BuNaMo\adjective")) {
+			foreach(string file in Directory.GetFiles(@"C:\MBM\BuNaMo\adjective")) {
 				XmlDocument doc=new XmlDocument(); doc.Load(file);
 				Adjective adjective=new Adjective(doc);
 				if(!doFilter || filterNicknames.Contains(adjective.getNickname().ToLower())) {
@@ -87,7 +88,7 @@ namespace Tester
 					writer.Close();
 				}
 			}
-			foreach(string file in Directory.GetFiles(@"C:\MBM\Gramadan\BuNaMo\nounPhrase")) {
+			foreach(string file in Directory.GetFiles(@"C:\MBM\BuNaMo\nounPhrase")) {
 				XmlDocument doc=new XmlDocument(); doc.Load(file);
 				NP np=new NP(doc);
 				if(!doFilter || filterNicknames.Contains(np.getNickname().ToLower())) {
@@ -96,7 +97,7 @@ namespace Tester
 					writer.Close();
 				}
 			}
-			foreach(string file in Directory.GetFiles(@"C:\MBM\Gramadan\BuNaMo\preposition")) {
+			foreach(string file in Directory.GetFiles(@"C:\MBM\BuNaMo\preposition")) {
 				XmlDocument doc=new XmlDocument(); doc.Load(file);
 				Preposition preposition=new Preposition(doc);
 				if(!doFilter || filterNicknames.Contains(preposition.getNickname().ToLower())) {
@@ -105,34 +106,7 @@ namespace Tester
 					writer.Close();
 				}
 			}
-			foreach(string file in Directory.GetFiles(@"C:\MBM\Gramadan\BuNaMo\verb")) {
-				XmlDocument doc=new XmlDocument(); doc.Load(file);
-				Verb verb=new Verb(doc);
-				if(!doFilter || filterNicknames.Contains(verb.getNickname().ToLower())) {
-					StreamWriter writer=new StreamWriter(@"C:\MBM\Gramadan\NeidOutput\"+verb.getNickname()+".xml");
-					writer.Write(PrettyPrintXml(printer.printVerbXml(verb)));
-					writer.Close();
-				}
-			}
-			foreach(string file in Directory.GetFiles(@"C:\MBM\Gramadan\BuNaMo\nounUnsafe")) {
-				XmlDocument doc=new XmlDocument(); doc.Load(file);
-				Noun noun=new Noun(doc);
-				if(!doFilter || filterNicknames.Contains(noun.getNickname().ToLower())) {
-					StreamWriter writer=new StreamWriter(@"C:\MBM\Gramadan\NeidOutput\"+noun.getNickname()+".xml");
-					writer.Write(PrettyPrintXml(printer.printNounXml(noun)));
-					writer.Close();
-				}
-			}
-			foreach(string file in Directory.GetFiles(@"C:\MBM\Gramadan\BuNaMo\adjectiveUnsafe")) {
-				XmlDocument doc=new XmlDocument(); doc.Load(file);
-				Adjective adjective=new Adjective(doc);
-				if(!doFilter || filterNicknames.Contains(adjective.getNickname().ToLower())) {
-					StreamWriter writer=new StreamWriter(@"C:\MBM\Gramadan\NeidOutput\"+adjective.getNickname()+".xml");
-					writer.Write(PrettyPrintXml(printer.printAdjectiveXml(adjective)));
-					writer.Close();
-				}
-			}
-			foreach(string file in Directory.GetFiles(@"C:\MBM\Gramadan\BuNaMo\verbUnsafe")) {
+			foreach(string file in Directory.GetFiles(@"C:\MBM\BuNaMo\verb")) {
 				XmlDocument doc=new XmlDocument(); doc.Load(file);
 				Verb verb=new Verb(doc);
 				if(!doFilter || filterNicknames.Contains(verb.getNickname().ToLower())) {
