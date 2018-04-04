@@ -11,8 +11,22 @@ namespace Tester
 	{
 		static void Main(string[] args)
 		{
+			//ShortTest();
 			Go();
 			Console.Write("Déanta."); Console.ReadLine();
+		}
+
+		//Just quickly test something:
+		public static void ShortTest() {
+			Noun n=new Noun(@"C:\MBM\BuNaMo\noun\freagra_masc4.xml");
+			//Noun n=new Noun(@"C:\MBM\BuNaMo\noun\fleá_fem4.xml");
+			//Noun n=new Noun(@"C:\MBM\BuNaMo\noun\faoileán_masc1.xml");
+			NP np=new NP(n);
+			//Preposition p=new Preposition(@"C:\MBM\BuNaMo\preposition\do_prep.xml");
+			Preposition p=new Preposition(@"C:\MBM\BuNaMo\preposition\de_prep.xml");
+			//Preposition p=new Preposition(@"C:\MBM\BuNaMo\preposition\i_prep.xml");
+			PP pp=new PP(p, np);
+			Console.WriteLine(pp.print());
 		}
 
 		/// <summary>

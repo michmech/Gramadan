@@ -123,12 +123,12 @@ namespace Gramadan
 			return Regex.IsMatch(txt, "[eiéí][^aeiouáéíóú]+$");
 		}
 
-		//Tells you whether the string has a vowel or 'fh' at its start:
-		public static bool StartsVowelFh(string txt)
+		//Tells you whether the string has a vowel or 'fh' (but not 'fhl' or 'fhr') at its start:
+		public static bool StartsVowelFhx(string txt)
 		{
 			bool ret=false;
 			if(Regex.IsMatch(txt, "^[aeiouáéíóúAEIOUÁÉÍÓÚ]")) ret=true;
-			if(Regex.IsMatch(txt, "^fh", RegexOptions.IgnoreCase)) ret=true;
+			if(Regex.IsMatch(txt, "^fh[^lr]", RegexOptions.IgnoreCase)) ret=true;
 			return ret;
 		}
 

@@ -154,11 +154,11 @@ namespace Gramadan
 			}
 			if(this.prepNick=="de_prep") {
 				foreach(FormSg f in np.sgDat) {
-					string txt=Opers.Mutate(Mutation.Len1, f.value); if(Opers.StartsVowelFh(txt)) txt="d'"+txt; else txt="de "+txt;
+					string txt=Opers.Mutate(Mutation.Len1, f.value); if(Opers.StartsVowelFhx(txt)) txt="d'"+txt; else txt="de "+txt;
 					this.sg.Add(new FormSg(txt, f.gender));
 				}
 				foreach(Form f in np.plDat) {
-					string txt=Opers.Mutate(Mutation.Len1, f.value); if(Opers.StartsVowelFh(txt)) txt="d'"+txt; else txt="de "+txt;
+					string txt=Opers.Mutate(Mutation.Len1, f.value); if(Opers.StartsVowelFhx(txt)) txt="d'"+txt; else txt="de "+txt;
 					this.pl.Add(new Form(txt));
 				}
 				foreach(FormSg f in np.sgDatArtN) this.sgArtN.Add(new FormSg("den "+Opers.Mutate(Mutation.Len3, f.value), f.gender));
@@ -167,11 +167,11 @@ namespace Gramadan
 			}
 			if(this.prepNick=="do_prep") {
 				foreach(FormSg f in np.sgDat) {
-					string txt=Opers.Mutate(Mutation.Len1, f.value); if(Opers.StartsVowelFh(txt)) txt="d'"+txt; else txt="do "+txt;
+					string txt=Opers.Mutate(Mutation.Len1, f.value); if(Opers.StartsVowelFhx(txt)) txt="d'"+txt; else txt="do "+txt;
 					this.sg.Add(new FormSg(txt, f.gender));
 				}
 				foreach(Form f in np.plDat) {
-					string txt=Opers.Mutate(Mutation.Len1, f.value); if(Opers.StartsVowelFh(txt)) txt="d'"+txt; else txt="do "+txt;
+					string txt=Opers.Mutate(Mutation.Len1, f.value); if(Opers.StartsVowelFhx(txt)) txt="d'"+txt; else txt="do "+txt;
 					this.pl.Add(new Form(txt));
 				}
 				foreach(FormSg f in np.sgDatArtN) this.sgArtN.Add(new FormSg("don "+Opers.Mutate(Mutation.Len3, f.value), f.gender));
@@ -196,12 +196,12 @@ namespace Gramadan
 				}
 				foreach(FormSg f in np.sgDatArtN) {
 					string txt=Opers.Mutate(Mutation.Len3, f.value);
-					if(Opers.StartsVowelFh(txt)) txt="san "+txt; else txt="sa "+txt;
+					if(Opers.StartsVowelFhx(txt)) txt="san "+txt; else txt="sa "+txt;
 					this.sgArtN.Add(new FormSg(txt, f.gender));
 				}
 				foreach(FormSg f in np.sgDatArtS) {
 					string txt=Opers.Mutate((f.gender==Gender.Fem?Mutation.Len3:Mutation.Len2), f.value);
-					if(Opers.StartsVowelFh(txt)) txt="san "+txt; else txt="sa "+txt;
+					if(Opers.StartsVowelFhx(txt)) txt="san "+txt; else txt="sa "+txt;
 					this.sgArtS.Add(new FormSg(txt, f.gender));
 				}
 				foreach(Form f in np.plDatArt) this.plArt.Add(new Form("sna "+Opers.Mutate(Mutation.PrefH, f.value)));
