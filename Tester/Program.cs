@@ -11,22 +11,31 @@ namespace Tester
 	{
 		static void Main(string[] args)
 		{
-			//ShortTest();
-			Go();
+			ShortTest();
+			//FindAll();
+			//Go();
 			Console.Write("Déanta."); Console.ReadLine();
 		}
 
 		//Just quickly test something:
 		public static void ShortTest() {
-			Noun n=new Noun(@"C:\MBM\BuNaMo\noun\freagra_masc4.xml");
-			//Noun n=new Noun(@"C:\MBM\BuNaMo\noun\fleá_fem4.xml");
-			//Noun n=new Noun(@"C:\MBM\BuNaMo\noun\faoileán_masc1.xml");
-			NP np=new NP(n);
-			//Preposition p=new Preposition(@"C:\MBM\BuNaMo\preposition\do_prep.xml");
-			Preposition p=new Preposition(@"C:\MBM\BuNaMo\preposition\de_prep.xml");
-			//Preposition p=new Preposition(@"C:\MBM\BuNaMo\preposition\i_prep.xml");
-			PP pp=new PP(p, np);
-			Console.WriteLine(pp.print());
+			Noun n = new Noun(@"C:\MBM\michmech\BuNaMo\noun\Gael_masc1.xml");
+			Adjective adj = new Adjective(@"C:\MBM\michmech\BuNaMo\adjective\Gaelach_adj1.xml");
+			NP np = new NP(n, adj);
+			Console.WriteLine(np.print());
+		}
+
+		//Find all words that have some property:
+		public static void FindAll() {
+			foreach(string file in Directory.GetFiles(@"C:\MBM\michmech\BuNaMo\noun")) {
+				XmlDocument doc=new XmlDocument(); doc.Load(file);
+				Noun noun=new Noun(doc);
+				foreach(FormPlGen form in noun.plGen) {
+					if(form.strength == Strength.Weak && Opers.IsSlender(form.value)) {
+						Console.WriteLine(form.value);
+					}
+				}
+			}
 		}
 
 		/// <summary>
