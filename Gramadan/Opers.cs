@@ -123,6 +123,12 @@ namespace Gramadan
 			return Regex.IsMatch(txt, "[eiéí][^aeiouáéíóú]+$");
 		}
 
+		//Tells you whether the string ends in a slender consonant cluster where the slenderness is caused by an "i" (and not by an "e"):
+		public static bool IsSlenderI(string txt)
+		{
+			return Regex.IsMatch(txt, "[ií][^aeiouáéíóú]+$");
+		}
+
 		//Tells you whether the string has a vowel or 'fh' (but not 'fhl' or 'fhr') at its start:
 		public static bool StartsVowelFhx(string txt)
 		{

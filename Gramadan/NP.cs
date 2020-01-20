@@ -347,6 +347,7 @@ namespace Gramadan
 						List<Form> modForms=(headForm.strength==Strength.Strong ? mod.plNom : mod.sgNom);
 						foreach(Form modForm in modForms) {
 							Mutation mutA=(Opers.IsSlender(headForm.value) ? Mutation.Len1 : Mutation.None);
+							if(headForm.strength==Strength.Weak) mutA=(Opers.IsSlenderI(headForm.value) ? Mutation.Len1 : Mutation.None); //"Gael", "captaen" are not slender
 							string value=headForm.value+" "+Opers.Mutate(mutA, modForm.value);
 							this.plGen.Add(new Form(value));
 						}
@@ -360,6 +361,7 @@ namespace Gramadan
 							Mutation mutN=Mutation.Ecl1;
 							if(head.isImmutable) mutN=Mutation.None;
 							Mutation mutA=(Opers.IsSlender(headForm.value) ? Mutation.Len1 : Mutation.None);
+							if(headForm.strength==Strength.Weak) mutA=(Opers.IsSlenderI(headForm.value) ? Mutation.Len1 : Mutation.None); //"Gael", "captaen" are not slender
 							string value="na "+Opers.Mutate(mutN, headForm.value)+" "+Opers.Mutate(mutA, modForm.value);
 							this.plGenArt.Add(new Form(value));
 						}
