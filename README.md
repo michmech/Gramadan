@@ -22,14 +22,13 @@ Más ag tagairt do Ghramadán i bhfoilseachán acadúil atá tú, moltar an pái
 
 If you are referring to Gramadán from an academic publication, it is recommended that you cite this paper.
 
-Měchura, Michal Boleslav (2014) ‘[Irish National Morphology Database: a high-accuracy open-source dataset of Irish words](http://www.lexiconista.com/gramadan-cltw-2014.pdf)’ in *Proceedings of the First Celtic Language Technology Workshop*, pp. 50-54
+Měchura, Michal Boleslav (2014) ‘[Irish National Morphology Database: a high-accuracy open-source dataset of Irish words](http://www.lexiconista.com/pdf/gramadan-cltw-2014.pdf)’ in *Proceedings of the First Celtic Language Technology Workshop*, pp. 50-54
 
 	@inproceedings{mechura_gramadan_2014,
 		title = {Irish {National} {Morphology} {Database}: a high-accuracy open-source dataset of {Irish} words},
-		url = {http://www.lexiconista.com/gramadan-cltw-2014.pdf},
+		url = {http://www.lexiconista.com/pdf/gramadan-cltw-2014.pdf},
 		booktitle = {Proceedings of the {First} {Celtic} {Language} {Technology} {Workshop}},
 		author = {Měchura, Michal Boleslav},
 		editor = {Judge, J. and Lynn, T. and Ward, M. and  Ó Raghallaigh, B.},
 		year = {2014}
 	}
-
