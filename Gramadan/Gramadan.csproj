@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adjective.cs" />
+    <Compile Include="Possessive.cs" />
     <Compile Include="PP.cs" />
     <Compile Include="Features.cs" />
     <Compile Include="NP.cs" />

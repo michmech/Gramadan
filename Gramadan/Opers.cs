@@ -154,6 +154,14 @@ namespace Gramadan
 			return ret;
 		}
 
+		//Tells you whether the string starts in F followed by a vowel:
+		public static bool StartsFVowel(string txt)
+		{
+			bool ret=false;
+			if(Regex.IsMatch(txt, "^[fF][aeiouáéíóúAEIOUÁÉÍÓÚ]")) ret=true;
+			return ret;
+		}
+
 		//Tells you whether the string starts in b, m, p:
 		public static bool StartsBilabial(string txt)
 		{

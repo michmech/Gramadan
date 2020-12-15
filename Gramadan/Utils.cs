@@ -12,5 +12,18 @@ namespace Gramadan
 			doc.Load(fileName);
 			return doc;
 		}
+
+		public static string LowerInit(string s) {
+			if(s.Length > 1) {
+				s=s.Substring(0, 1).ToLower()+s.Substring(1);
+			}
+			return s;
+		}
+		public static string UpperInit(string s) {
+			if(s.Length > 1) {
+				s=s.Substring(0, 1).ToUpper()+s.Substring(1);
+			}
+			return s;
+		}
 	}
 }

@@ -11,9 +11,10 @@ namespace Tester
 	{
 		static void Main(string[] args)
 		{
+			TestPossessives.PossNP();
 			//ShortTest();
 			//FindAll();
-			Go();
+			//Go();
 			Console.Write("Déanta."); Console.ReadLine();
 		}
 

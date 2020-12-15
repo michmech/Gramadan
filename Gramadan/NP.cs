@@ -411,8 +411,73 @@ namespace Gramadan
 			}
 		}
 
-		//Prints the noun phrase in BuNaMo format:
-		public XmlDocument printXml()
+		//Creates a noun phrase from a noun determined by a possessive pronoun:
+		public NP(Noun head, Possessive poss) {
+			this.isDefinite=head.isDefinite;
+			#region singular-nominative
+			foreach(FormSg headForm in head.sgNom) {
+				if(poss.apos.Count>0 & (Opers.StartsVowel(headForm.value) || Opers.StartsFVowel(headForm.value))) {
+					foreach(Form possForm in poss.apos) {
+						string value=possForm.value+Opers.Mutate(poss.mutation, headForm.value);
+						this.sgNom.Add(new FormSg(value, headForm.gender));
+					}
+				} else {
+					foreach(Form possForm in poss.full) {
+						string value=possForm.value+" "+Opers.Mutate(poss.mutation, headForm.value);
+						this.sgNom.Add(new FormSg(value, headForm.gender));
+					}
+				}
+			}
+            #endregion
+			#region singular-genitive
+			foreach(FormSg headForm in head.sgGen) {
+				if(poss.apos.Count>0 & (Opers.StartsVowel(headForm.value) || Opers.StartsFVowel(headForm.value))) {
+					foreach(Form possForm in poss.apos) {
+						string value=possForm.value+Opers.Mutate(poss.mutation, headForm.value);
+						this.sgGen.Add(new FormSg(value, headForm.gender));
+					}
+				} else {
+					foreach(Form possForm in poss.full) {
+						string value=possForm.value+" "+Opers.Mutate(poss.mutation, headForm.value);
+						this.sgGen.Add(new FormSg(value, headForm.gender));
+					}
+				}
+			}
+            #endregion
+			#region plural-nominative
+			foreach(Form headForm in head.plNom) {
+				if(poss.apos.Count>0 & (Opers.StartsVowel(headForm.value) || Opers.StartsFVowel(headForm.value))) {
+					foreach(Form possForm in poss.apos) {
+						string value=possForm.value+Opers.Mutate(poss.mutation, headForm.value);
+						this.plNom.Add(new Form(value));
+					}
+				} else {
+					foreach(Form possForm in poss.full) {
+						string value=possForm.value+" "+Opers.Mutate(poss.mutation, headForm.value);
+						this.plNom.Add(new Form(value));
+					}
+				}
+			}
+            #endregion
+			#region plural-genitive
+			foreach(Form headForm in head.plGen) {
+				if(poss.apos.Count>0 & (Opers.StartsVowel(headForm.value) || Opers.StartsFVowel(headForm.value))) {
+					foreach(Form possForm in poss.apos) {
+						string value=possForm.value+Opers.Mutate(poss.mutation, headForm.value);
+						this.plGen.Add(new Form(value));
+					}
+				} else {
+					foreach(Form possForm in poss.full) {
+						string value=possForm.value+" "+Opers.Mutate(poss.mutation, headForm.value);
+						this.plGen.Add(new Form(value));
+					}
+				}
+			}
+            #endregion
+        }
+
+        //Prints the noun phrase in BuNaMo format:
+        public XmlDocument printXml()
 		{
 			XmlDocument doc=new XmlDocument(); doc.LoadXml("<nounPhrase/>");
 			doc.DocumentElement.SetAttribute("default", this.getLemma());
