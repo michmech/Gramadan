@@ -100,7 +100,7 @@ namespace Gramadan
 
 			//continue deriving the genitive:
 			form=Regex.Replace(form, "(["+Opers.VowelsSlender+"])ngt$", "$1ngth"); //eg. tarraingt > tarraingthe
-			form=Regex.Replace(form, "ú$", "ath"); //eg. scrúdú > scrúdaithe
+			form=Regex.Replace(form, "ú$", "aith"); //eg. scrúdú > scrúdaithe
 			form=form+"e";
 			this.genitive.Add(new Form(form));
 		}
