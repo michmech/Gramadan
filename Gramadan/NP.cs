@@ -41,6 +41,9 @@ namespace Gramadan
         public bool isDefinite=false; //If true, the articleless forms are definite and there are no articled forms.
                                       //If false, the articleless forms are indefinite and the articled forms are definite.
 
+		//Whether this noun phrase is determined by a possessive pronoun:
+		public bool isPossessed=false; //if true, only sgNom, sgDat, sgGen, plNom, plDat, plGen exist, the others are empty.
+
 		//Whether this NP's head noun cannot be mutated by prepositions:
 		public bool isImmutable=false; //Eg. "blitz", dative "leis an blitz mhór"
 
@@ -411,69 +414,119 @@ namespace Gramadan
 			}
 		}
 
-		//Creates a noun phrase from a noun determined by a possessive pronoun:
-		public NP(Noun head, Possessive poss) {
-			this.isDefinite=head.isDefinite;
+		//Constructor helper: Adds a possessive pronoun to sgNom, sgDat, sgGen, plNom, plDat, plGen of itself, empties all other forms:
+		private void makePossessive(Possessive poss) {
+			this.isDefinite=true;
+			this.isPossessed=true;
 			#region singular-nominative
-			foreach(FormSg headForm in head.sgNom) {
+			foreach(FormSg headForm in this.sgNom) {
 				if(poss.apos.Count>0 & (Opers.StartsVowel(headForm.value) || Opers.StartsFVowel(headForm.value))) {
 					foreach(Form possForm in poss.apos) {
 						string value=possForm.value+Opers.Mutate(poss.mutation, headForm.value);
-						this.sgNom.Add(new FormSg(value, headForm.gender));
+						headForm.value=value;
 					}
 				} else {
 					foreach(Form possForm in poss.full) {
 						string value=possForm.value+" "+Opers.Mutate(poss.mutation, headForm.value);
-						this.sgNom.Add(new FormSg(value, headForm.gender));
+						headForm.value=value;
+					}
+				}
+			}
+            #endregion
+			#region singular-dative
+			foreach(FormSg headForm in this.sgDat) {
+				if(poss.apos.Count>0 & (Opers.StartsVowel(headForm.value) || Opers.StartsFVowel(headForm.value))) {
+					foreach(Form possForm in poss.apos) {
+						string value=possForm.value+Opers.Mutate(poss.mutation, headForm.value);
+						headForm.value=value;
+					}
+				} else {
+					foreach(Form possForm in poss.full) {
+						string value=possForm.value+" "+Opers.Mutate(poss.mutation, headForm.value);
+						headForm.value=value;
 					}
 				}
 			}
             #endregion
 			#region singular-genitive
-			foreach(FormSg headForm in head.sgGen) {
+			foreach(FormSg headForm in this.sgGen) {
 				if(poss.apos.Count>0 & (Opers.StartsVowel(headForm.value) || Opers.StartsFVowel(headForm.value))) {
 					foreach(Form possForm in poss.apos) {
 						string value=possForm.value+Opers.Mutate(poss.mutation, headForm.value);
-						this.sgGen.Add(new FormSg(value, headForm.gender));
+						headForm.value=value;
 					}
 				} else {
 					foreach(Form possForm in poss.full) {
 						string value=possForm.value+" "+Opers.Mutate(poss.mutation, headForm.value);
-						this.sgGen.Add(new FormSg(value, headForm.gender));
+						headForm.value=value;
 					}
 				}
 			}
             #endregion
 			#region plural-nominative
-			foreach(Form headForm in head.plNom) {
+			foreach(Form headForm in this.plNom) {
 				if(poss.apos.Count>0 & (Opers.StartsVowel(headForm.value) || Opers.StartsFVowel(headForm.value))) {
 					foreach(Form possForm in poss.apos) {
 						string value=possForm.value+Opers.Mutate(poss.mutation, headForm.value);
-						this.plNom.Add(new Form(value));
+						headForm.value=value;
 					}
 				} else {
 					foreach(Form possForm in poss.full) {
 						string value=possForm.value+" "+Opers.Mutate(poss.mutation, headForm.value);
-						this.plNom.Add(new Form(value));
+						headForm.value=value;
+					}
+				}
+			}
+            #endregion
+			#region plural-dative
+			foreach(Form headForm in this.plDat) {
+				if(poss.apos.Count>0 & (Opers.StartsVowel(headForm.value) || Opers.StartsFVowel(headForm.value))) {
+					foreach(Form possForm in poss.apos) {
+						string value=possForm.value+Opers.Mutate(poss.mutation, headForm.value);
+						headForm.value=value;
+					}
+				} else {
+					foreach(Form possForm in poss.full) {
+						string value=possForm.value+" "+Opers.Mutate(poss.mutation, headForm.value);
+						headForm.value=value;
 					}
 				}
 			}
             #endregion
 			#region plural-genitive
-			foreach(Form headForm in head.plGen) {
+			foreach(Form headForm in this.plGen) {
 				if(poss.apos.Count>0 & (Opers.StartsVowel(headForm.value) || Opers.StartsFVowel(headForm.value))) {
 					foreach(Form possForm in poss.apos) {
 						string value=possForm.value+Opers.Mutate(poss.mutation, headForm.value);
-						this.plGen.Add(new Form(value));
+						headForm.value=value;
 					}
 				} else {
 					foreach(Form possForm in poss.full) {
 						string value=possForm.value+" "+Opers.Mutate(poss.mutation, headForm.value);
-						this.plGen.Add(new Form(value));
+						headForm.value=value;
 					}
 				}
 			}
             #endregion
+            #region empty-all-others
+			this.sgDatArtN.Clear();
+			this.sgDatArtS.Clear();
+			this.sgGenArt.Clear();
+			this.sgNomArt.Clear();
+			this.plDatArt.Clear();
+			this.plGenArt.Clear();
+			this.plNomArt.Clear();
+            #endregion
+        }
+
+        //Creates a noun phrase from a noun determined by a possessive pronoun:
+        public NP(Noun head, Possessive poss) : this(head) {
+			this.makePossessive(poss);
+        }
+
+        //Creates a noun phrase from a noun modified by an adjective determined by a possessive pronoun:
+        public NP(Noun head, Adjective mod, Possessive poss) : this(head, mod) {
+			this.makePossessive(poss);
         }
 
         //Prints the noun phrase in BuNaMo format:
@@ -484,6 +537,7 @@ namespace Gramadan
 			doc.DocumentElement.SetAttribute("disambig", this.disambig);
 			doc.DocumentElement.SetAttribute("isImmutable", (this.isImmutable ? "1" : "0"));
 			doc.DocumentElement.SetAttribute("isDefinite", (this.isDefinite ? "1" : "0"));
+			doc.DocumentElement.SetAttribute("isPossessed", (this.isPossessed ? "1" : "0"));
 			doc.DocumentElement.SetAttribute("forceNominative", (this.forceNominative? "1" : "0"));
 			foreach(FormSg f in this.sgNom) {
 				XmlElement el=doc.CreateElement("sgNom");
@@ -565,6 +619,7 @@ namespace Gramadan
 		{
 			this.disambig=doc.DocumentElement.GetAttribute("disambig");
 			this.isDefinite=(doc.DocumentElement.GetAttribute("isDefinite")=="1" ? true : false);
+			this.isPossessed=(doc.DocumentElement.GetAttribute("isPossessed")=="1" ? true : false);
 			this.isImmutable=(doc.DocumentElement.GetAttribute("isImmutable")=="1" ? true : false);
 			this.forceNominative=(doc.DocumentElement.GetAttribute("forceNominative")=="1" ? true : false);
 			foreach(XmlElement el in doc.SelectNodes("/*/sgNom")) {

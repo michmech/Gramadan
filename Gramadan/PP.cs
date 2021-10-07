@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
+using System.Text.RegularExpressions;
 
 namespace Gramadan
 {
@@ -116,6 +117,13 @@ namespace Gramadan
 		//Creates a prepositional phrase from a preposition and a noun phrase:
         public PP(Preposition prep, NP np)
         {
+			if(!np.isPossessed) populateFromUnpossNP(prep, np);
+			else populateFromPossNP(prep, np);
+		}
+
+		//Populates "this" as a prepositional phrase composed from a preposition and an unpossessed noun phrase:
+		private void populateFromUnpossNP(Preposition prep, NP np)
+		{
 			this.prepNick=prep.getNickname();
 			if(this.prepNick=="ag_prep") {
 				foreach(FormSg f in np.sgDat) this.sg.Add(new FormSg("ag "+f.value, f.gender));
@@ -246,6 +254,90 @@ namespace Gramadan
 				foreach(FormSg f in np.sgDatArtN) this.sgArtN.Add(new FormSg("um an "+Opers.Mutate(Mutation.Len3, f.value), f.gender));
 				foreach(FormSg f in np.sgDatArtS) this.sgArtS.Add(new FormSg("um an "+Opers.Mutate((f.gender==Gender.Fem?Mutation.Ecl3:Mutation.Ecl2), f.value), f.gender));
 				foreach(Form f in np.plDatArt) this.plArt.Add(new Form("um na "+Opers.Mutate(Mutation.PrefH, f.value)));
+			}
+		}
+
+		//Populates "this" as a prepositional phrase composed from a preposition and a possessed noun phrase:
+		private void populateFromPossNP(Preposition prep, NP np)
+		{
+			this.prepNick = prep.getNickname();
+			if(this.prepNick=="de_prep" || this.prepNick=="do_prep") {
+				foreach(FormSg f in np.sgDat){
+					if(f.value.StartsWith("a ")) this.sg.Add(new FormSg(Regex.Replace(f.value, "^a ", "dá "), f.gender));
+					if(f.value.StartsWith("ár ")) this.sg.Add(new FormSg(Regex.Replace(f.value, "^ár ", "dár "), f.gender));
+					else this.sg.Add(new FormSg(prep.getLemma()+" " + f.value, f.gender));
+				}
+				foreach(Form f in np.plDat){
+					if(f.value.StartsWith("a ")) this.pl.Add(new Form(Regex.Replace(f.value, "^a ", "dá ")));
+					if(f.value.StartsWith("ár ")) this.pl.Add(new Form(Regex.Replace(f.value, "^ár ", "dár ")));
+					else this.pl.Add(new Form(prep.getLemma()+" " + f.value));
+				}
+			}
+			else if(this.prepNick=="faoi_prep") {
+				foreach(FormSg f in np.sgDat){
+					if(f.value.StartsWith("a ")) this.sg.Add(new FormSg(Regex.Replace(f.value, "^a ", "faoina "), f.gender));
+					if(f.value.StartsWith("ár ")) this.sg.Add(new FormSg(Regex.Replace(f.value, "^ár ", "faoinár "), f.gender));
+					else this.sg.Add(new FormSg(prep.getLemma()+" " + f.value, f.gender));
+				}
+				foreach(Form f in np.plDat){
+					if(f.value.StartsWith("a ")) this.pl.Add(new Form(Regex.Replace(f.value, "^a ", "faoina ")));
+					if(f.value.StartsWith("ár ")) this.pl.Add(new Form(Regex.Replace(f.value, "^ár ", "faoinár ")));
+					else this.pl.Add(new Form(prep.getLemma()+" " + f.value));
+				}
+			}
+			else if(this.prepNick=="i_prep") {
+				foreach(FormSg f in np.sgDat){
+					if(f.value.StartsWith("a ")) this.sg.Add(new FormSg(Regex.Replace(f.value, "^a ", "ina "), f.gender));
+					if(f.value.StartsWith("ár ")) this.sg.Add(new FormSg(Regex.Replace(f.value, "^ár ", "inár "), f.gender));
+					if(f.value.StartsWith("bhur ")) this.sg.Add(new FormSg(Regex.Replace(f.value, "^bhur ", "in bhur "), f.gender));
+					else this.sg.Add(new FormSg(prep.getLemma()+" " + f.value, f.gender));
+				}
+				foreach(Form f in np.plDat){
+					if(f.value.StartsWith("a ")) this.pl.Add(new Form(Regex.Replace(f.value, "^a ", "ina ")));
+					if(f.value.StartsWith("ár ")) this.pl.Add(new Form(Regex.Replace(f.value, "^ár ", "inár ")));
+					if(f.value.StartsWith("bhur ")) this.pl.Add(new Form(Regex.Replace(f.value, "^bhur ", "in bhur ")));
+					else this.pl.Add(new Form(prep.getLemma()+" " + f.value));
+				}
+			}
+			else if(this.prepNick=="le_prep") {
+				foreach(FormSg f in np.sgDat){
+					if(f.value.StartsWith("a ")) this.sg.Add(new FormSg(Regex.Replace(f.value, "^a ", "lena "), f.gender));
+					if(f.value.StartsWith("ár ")) this.sg.Add(new FormSg(Regex.Replace(f.value, "^ár ", "lenár "), f.gender));
+					else this.sg.Add(new FormSg(prep.getLemma()+" " + f.value, f.gender));
+				}
+				foreach(Form f in np.plDat){
+					if(f.value.StartsWith("a ")) this.pl.Add(new Form(Regex.Replace(f.value, "^a ", "lena ")));
+					if(f.value.StartsWith("ár ")) this.pl.Add(new Form(Regex.Replace(f.value, "^ár ", "lenár ")));
+					else this.pl.Add(new Form(prep.getLemma()+" " + f.value));
+				}
+			}
+			else if(this.prepNick=="ó_prep") {
+				foreach(FormSg f in np.sgDat){
+					if(f.value.StartsWith("a ")) this.sg.Add(new FormSg(Regex.Replace(f.value, "^a ", "óna "), f.gender));
+					if(f.value.StartsWith("ár ")) this.sg.Add(new FormSg(Regex.Replace(f.value, "^ár ", "ónár "), f.gender));
+					else this.sg.Add(new FormSg(prep.getLemma()+" " + f.value, f.gender));
+				}
+				foreach(Form f in np.plDat){
+					if(f.value.StartsWith("a ")) this.pl.Add(new Form(Regex.Replace(f.value, "^a ", "óna ")));
+					if(f.value.StartsWith("ár ")) this.pl.Add(new Form(Regex.Replace(f.value, "^ár ", "ónár ")));
+					else this.pl.Add(new Form(prep.getLemma()+" " + f.value));
+				}
+			}
+			else if(this.prepNick=="trí_prep") {
+				foreach(FormSg f in np.sgDat){
+					if(f.value.StartsWith("a ")) this.sg.Add(new FormSg(Regex.Replace(f.value, "^a ", "trína "), f.gender));
+					if(f.value.StartsWith("ár ")) this.sg.Add(new FormSg(Regex.Replace(f.value, "^ár ", "trínár "), f.gender));
+					else this.sg.Add(new FormSg(prep.getLemma()+" " + f.value, f.gender));
+				}
+				foreach(Form f in np.plDat){
+					if(f.value.StartsWith("a ")) this.pl.Add(new Form(Regex.Replace(f.value, "^a ", "trína ")));
+					if(f.value.StartsWith("ár ")) this.pl.Add(new Form(Regex.Replace(f.value, "^ár ", "trínár ")));
+					else this.pl.Add(new Form(prep.getLemma()+" " + f.value));
+				}
+			}
+			else {
+				foreach(FormSg f in np.sgDat) this.sg.Add(new FormSg(prep.getLemma()+" "+f.value, f.gender));
+				foreach(Form f in np.plDat) this.pl.Add(new Form(prep.getLemma()+" "+f.value));
 			}
 		}
 
