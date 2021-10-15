@@ -266,6 +266,22 @@ namespace Gramadan
 			ret+="</Lemma>";
 			return ret;
 		}
+		public string printPossessiveXml(Possessive p)
+		{
+			string nl=Environment.NewLine;
+
+			string ret="";
+			if(this.withXmlDeclarations) ret+="<?xml version='1.0' encoding='utf-8'?>"+nl;
+			if(this.withXmlDeclarations) ret+="<?xml-stylesheet type='text/xsl' href='!gram.xsl'?>"+nl;
+			ret+="<Lemma lemma='"+clean4xml(p.getLemma())+"' uid='"+clean4xml(p.getNickname())+"'>"+nl;
+			ret+="<possessive disambig='"+p.disambig+"'>"+nl;
+			//Forms:
+			for(int i=0; i<p.full.Count; i++) ret+="\t<full>"+p.full[i].value+"</full>"+nl;
+			for(int i=0; i<p.apos.Count; i++) ret+="\t<apos>"+p.apos[i].value+"</apos>"+nl;
+			ret+="</possessive>"+nl;
+			ret+="</Lemma>";
+			return ret;
+		}
 
         private string clean4xml(string text)
         {

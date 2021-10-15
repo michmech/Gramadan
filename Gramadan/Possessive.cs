@@ -27,7 +27,7 @@ namespace Gramadan
 		public List<Form> full=new List<Form>();
 		public List<Form> apos=new List<Form>();
 
-		//The mutaion it causes:
+		//The mutation it causes:
 		public Mutation mutation=Mutation.None;
 
         //Returns the noun's lemma:
