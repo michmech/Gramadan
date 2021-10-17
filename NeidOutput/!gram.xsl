@@ -126,7 +126,7 @@
 					<div class="subsection">
 						<h3><xsl:choose><xsl:when test="$metalang='ga'">GINIDEACH</xsl:when><xsl:when test="$metalang='en'">GENITIVE</xsl:when></xsl:choose></h3>
 						<xsl:apply-templates select="sgGen"/>
-						<xsl:if test="@forceNominative='1' and sgGen/articleNo/text()!=sgNom/articleNo/text()">
+						<xsl:if test="sgNom/articleYes and @forceNominative='1' and sgGen/articleNo/text()!=sgNom/articleNo/text()">
 							<div class="note">
 								<xsl:choose>
 									<xsl:when test="$metalang='ga'">
@@ -169,7 +169,7 @@
 					<div class="subsection">
 						<h3><xsl:choose><xsl:when test="$metalang='ga'">GINIDEACH</xsl:when><xsl:when test="$metalang='en'">GENITIVE</xsl:when></xsl:choose></h3>
 						<xsl:apply-templates select="plGen"/>
-						<xsl:if test="@forceNominative='1' and plGen/articleNo/text()!=plNom/articleNo/text()">
+						<xsl:if test="plNom/articleYes and @forceNominative='1' and plGen/articleNo/text()!=plNom/articleNo/text()">
 							<div class="note">
 								<xsl:choose>
 									<xsl:when test="$metalang='ga'">
