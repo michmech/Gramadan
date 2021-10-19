@@ -98,6 +98,7 @@ namespace Gramadan
 			ret+="<nounPhrase";
 			if(np.hasGender()) ret+=" gender='"+(np.getGender()==Gender.Masc ? "masc" : "fem")+"'";
 			ret+=" forceNominative='"+(np.forceNominative ? "1" : "0")+"'";
+			ret+=" isPossessed='"+(np.isPossessed ? "1" : "0")+"'";
 			ret+=">"+nl;
             //Singular nominative:
             for(int i=0; i<Math.Max(np.sgNom.Count, np.sgNomArt.Count); i++) {
