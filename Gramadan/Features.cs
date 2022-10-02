@@ -8,6 +8,7 @@ namespace Gramadan
 	public enum Strength { Strong, Weak }
 	public enum Number { Sg, Pl }
 	public enum Gender { Masc, Fem }
+    public enum Emphasizer { SaSe, SanSean, NaNe }
 
 	//Encapsulates a word form, a phrase form or a clause form:
 	public class Form

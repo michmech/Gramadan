@@ -72,6 +72,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QualityControl.cs" />
+    <Compile Include="TestEmphasizers.cs" />
     <Compile Include="TestPossessives.cs" />
   </ItemGroup>
   <ItemGroup>

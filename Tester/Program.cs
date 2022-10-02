@@ -11,8 +11,8 @@ namespace Tester
 	{
 		static void Main(string[] args)
 		{
-			//TestPossessives.PossNP();
-			TestPossessives.PrepPossNP();
+			//TestEmphasizers.PossN();
+			//TestEmphasizers.PrepPossN();
 			//ShortTest();
 			//FindAll();
 			//Go();

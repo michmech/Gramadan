@@ -24,11 +24,14 @@ namespace Gramadan
 		}
 		
 		//Its forms:
-		public List<Form> full=new List<Form>();
-		public List<Form> apos=new List<Form>();
+		public List<Form> full=new List<Form>(); //the full form: mo, do, ...
+		public List<Form> apos=new List<Form>(); //the apostrofied form, if any: m', d', ...
 
 		//The mutation it causes:
 		public Mutation mutation=Mutation.None;
+
+		//The emphasizer it puts on emphasized nouns:
+		public Emphasizer emphasizer = Emphasizer.SaSe;
 
         //Returns the noun's lemma:
         public string getLemma()
@@ -58,6 +61,7 @@ namespace Gramadan
 		{
 			this.disambig=doc.DocumentElement.GetAttribute("disambig");
 			this.mutation=(Mutation)Enum.Parse(typeof(Mutation), Utils.UpperInit(doc.DocumentElement.GetAttribute("mutation")));
+			this.emphasizer=(Emphasizer)Enum.Parse(typeof(Emphasizer), Utils.UpperInit(doc.DocumentElement.GetAttribute("emphasizer")));
 			foreach(XmlElement el in doc.SelectNodes("/*/full")) {
 				this.full.Add(new Form(el.GetAttribute("default")));
 			}
@@ -74,6 +78,7 @@ namespace Gramadan
 			doc.DocumentElement.SetAttribute("default", this.getLemma());
 			doc.DocumentElement.SetAttribute("disambig", this.disambig);
 			doc.DocumentElement.SetAttribute("mutation", Utils.LowerInit(this.mutation.ToString()));
+			doc.DocumentElement.SetAttribute("emphasizer", Utils.LowerInit(this.emphasizer.ToString()));
 			foreach(Form f in this.full) {
 				XmlElement el=doc.CreateElement("full");
 				el.SetAttribute("default", f.value);

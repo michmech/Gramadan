@@ -321,5 +321,26 @@ namespace Gramadan
 			string ret=prefix+Mutate(m, body);
 			return ret;
 		}
-	}
+
+        //Attaches an emphasizer to the end of the text (which should be the form of a noun, or a string which ends in one):
+        public static string Emphasize(string text, Emphasizer emphasizer)
+        {
+			string lastLetter = (text.Length>1 ? text.Substring(text.Length - 1, 1).ToLower() : "");
+
+			string broadEnding="", slenderEnding = "";
+			if(emphasizer==Emphasizer.SaSe && lastLetter!="s") { broadEnding = "sa"; slenderEnding = "se"; }
+			if(emphasizer==Emphasizer.SaSe && lastLetter=="s") { broadEnding = "-sa"; slenderEnding = "-se"; }
+			if(emphasizer==Emphasizer.SanSean && lastLetter!="s") { broadEnding = "san"; slenderEnding = "sean"; }
+			if(emphasizer==Emphasizer.SanSean && lastLetter=="s") { broadEnding = "-san"; slenderEnding = "-sean"; }
+			if(emphasizer==Emphasizer.NaNe && lastLetter!="n") { broadEnding = "na"; slenderEnding = "ne"; }
+			if(emphasizer==Emphasizer.NaNe && lastLetter=="n") { broadEnding = "-na"; slenderEnding = "-ne"; }
+			
+			string ret = text;
+			if (Regex.IsMatch(text, "(a|ae|o|u|á|ó|ú)[bcdfghjklmnpqrstvwxz]*$", RegexOptions.IgnoreCase)) ret = text + broadEnding;
+			else if (Regex.IsMatch(text, "(e|é|i|í)[bcdfghjklmnpqrstvwxz]*$", RegexOptions.IgnoreCase)) ret = text + slenderEnding;
+
+            return ret;
+        }
+
+    }
 }

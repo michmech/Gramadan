@@ -520,8 +520,17 @@ namespace Gramadan
         }
 
         //Creates a noun phrase from a noun determined by a possessive pronoun:
-        public NP(Noun head, Possessive poss) : this(head) {
+        public NP(Noun head, Possessive poss):this(head, poss, false) { }
+        public NP(Noun head, Possessive poss, bool emphasize) : this(head) {
 			this.makePossessive(poss);
+			if (emphasize) {
+				foreach (Form form in this.sgNom) form.value = Opers.Emphasize(form.value, poss.emphasizer);
+				foreach (Form form in this.sgDat) form.value = Opers.Emphasize(form.value, poss.emphasizer);
+				foreach (Form form in this.sgGen) form.value = Opers.Emphasize(form.value, poss.emphasizer);
+				foreach (Form form in this.plNom) form.value = Opers.Emphasize(form.value, poss.emphasizer);
+				foreach (Form form in this.plDat) form.value = Opers.Emphasize(form.value, poss.emphasizer);
+				foreach (Form form in this.plGen) form.value = Opers.Emphasize(form.value, poss.emphasizer);
+            }
         }
 
         //Creates a noun phrase from a noun modified by an adjective determined by a possessive pronoun:
