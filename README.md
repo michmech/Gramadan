@@ -32,3 +32,18 @@ Měchura, Michal Boleslav (2014) ‘[Irish National Morphology Database: a high-
 		editor = {Judge, J. and Lynn, T. and Ward, M. and  Ó Raghallaigh, B.},
 		year = {2014}
 	}
+
+## Gramadán i ríomhtheangacha eile | Gramadán in other programming languages   
+
+- Python
+
+    - [Gramadán in Python](https://github.com/philtweir/Gramadan/tree/python-implementation)
+      ([@philtweir](https://github.com/philtweir))
+    - [pygramadan](https://github.com/phonlab-tcd/pygramadan)
+      ([@phonlab-tcd](https://github.com/phonlab-tcd))
+
+- Java
+
+    - [gramadanj](https://github.com/jimregan/gramadanj)
+      ([@jimregan](https://github.com/jimregan))
+      
